@@ -1,0 +1,33 @@
+<html >
+
+<head>
+
+
+
+</head>
+
+<body>
+
+   
+   <div >Reviews</div>
+
+        <table cellspacing="0">
+            <tr>
+                <th>Product</th>
+                <th>Rating</th>
+                <th width="230">Comments</th>
+            </tr>
+                {% for Product_Ratings in Product_Ratings %}
+            <tr>
+                <td>{{Product_Ratings['Product']}}</td>
+                <td>{{Product_Ratings['Rating']}}</td>
+                <td>{{Product_Ratings['Comment']}} </td>
+                {% endfor %}
+        </table>
+   </div>
+
+
+
+</body>
+
+</html>
