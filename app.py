@@ -11,7 +11,7 @@ app = Flask(__name__)
 def hello_world():
     return render_template('home.html')
 
-@app.route("/review", methods = ['POST'])
+@app.route("/submit-product", methods = ['POST'])
 @cross_origin()
 def show():
     if (request.method == 'POST'):
@@ -31,9 +31,15 @@ def show():
 
             Product_Ratings=[]
             for i in reviews:
-                Rating = i.div.div.find_all('div', {'class':'a-row a-spacing-small review-data'})[0].div.div.span.text
-    
-                Comment = i.div.div.find_all('div', {'class': 'a-row'})[1].a['title']
+                try:
+                    Rating = i.div.div.find_all('div', {'class':'a-row a-spacing-small review-data'})[0].div.div.span.text
+                except:
+                    Rating = 'No Rating'
+
+                try:
+                     Comment = i.div.div.find_all('div', {'class': 'a-row'})[1].a['title']
+                except:
+                    Comment = 'No Comment'
             
                 mydict = {"Product": searchstring, "Rating": Rating, "Comment": Comment}
                 Product_Ratings.append(mydict)
@@ -48,4 +54,4 @@ def show():
 
 
 if __name__== "__main__":
-    app.run(host='0.0.0.0', port = 5001 )
+    app.run(host='0.0.0.0', port = 5000 )
